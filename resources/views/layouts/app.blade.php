@@ -16,6 +16,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @yield('internalCSS')
 </head>
 
 <body>
@@ -33,10 +34,21 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @guest
+                    @else
                     <ul class="navbar-nav me-auto">
+                        @if(Auth::user()->role->name == 'donatur')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>
+                        </li>
 
+                        @endif
                     </ul>
-
+                    @endguest
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -85,5 +97,6 @@
         </main>
     </div>
 </body>
+@yield('internalJS')
 
 </html>
