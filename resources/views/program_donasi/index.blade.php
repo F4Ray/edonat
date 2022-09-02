@@ -89,9 +89,14 @@
                                     <h5 class="card-title">{{ $donasi->nama }}</h5>
                                     <p class="card-text">{{ $donasi->keterangan }}</p>
                                     <p class="card-text mt-1">Rp {{ $donasi->dana_terkumpul }}</p>
+                                    @if ($donasi->donatur->contains('id', Auth::user()->donatur->id))
+                                    <button class="btn btn-primary" disabled>Terimakasih telah berdonasi di program
+                                        ini</button>
+                                    @else
                                     <a href="{{route('program_donasi.donasi_donatur', $donasi->id)}}"
                                         class="btn btn-primary">Donasi
                                         Sekarang</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -18,6 +18,17 @@ class ProgramDonasiController extends Controller
     public function index()
     {
         $programDonasi = ProgramDonasi::all();
+        // foreach ($programDonasi as $donasi) {
+        //     echo $donasi->nama;
+        //     // if (in_array(4, $donasi->donatur)) {
+        //     //     echo "ada dong";
+        //     // }
+
+        //     foreach ($donasi->donatur as $donaturnya) {
+        //         var_dump($donaturnya->id);
+        //     }
+        // }
+        // dd($programDonasi);
         return view('program_donasi.index', compact('programDonasi'));
     }
 
