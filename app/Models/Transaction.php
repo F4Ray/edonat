@@ -18,4 +18,18 @@ class Transaction extends Model
         'tanggal_donasi',
         'titip_doa'
     ];
+
+    /**
+     * Get the donatur that owns the Transaction
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function donatur()
+    {
+        return $this->belongsTo(Donatur::class, 'id_donatur');
+    }
+    public function program()
+    {
+        return $this->belongsTo(ProgramDonasi::class, 'id_program_donasi');
+    }
 }

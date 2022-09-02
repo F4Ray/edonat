@@ -44,12 +44,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('transaksi') }}">Transaksi</a>
+                        </li>
                         @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('donatur.index') }}">Donatur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('transaksi') }}">Transaksi</a>
                         </li>
 
                         @endif
