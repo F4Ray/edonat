@@ -19,6 +19,6 @@ class Donatur extends Model
 
     public function user()
     {
-        return $this->hasOne(Donatur::class, 'id_profile');
+        return $this->hasOne(User::class, 'id_profile');
     }
 }

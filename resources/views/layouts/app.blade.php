@@ -39,11 +39,17 @@
                     <ul class="navbar-nav me-auto">
                         @if(Auth::user()->role->name == 'donatur')
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('donatur.show', Auth::user()->id) }}">Profile</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>
                         </li>
                         @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('donatur.index') }}">Donatur</a>
                         </li>
 
                         @endif
