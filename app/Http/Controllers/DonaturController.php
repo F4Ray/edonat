@@ -17,7 +17,7 @@ class DonaturController extends Controller
      */
     public function index()
     {
-        $donaturs = Donatur::where('id', '!=', '1')->get();
+        $donaturs = Donatur::where('nama', '!=', 'Admin')->get();
         return view('donatur.index', compact('donaturs'));
     }
 

@@ -58,7 +58,7 @@
                                     <tr>
                                         <td>{{ $no }}</td>
                                         <td>{{ $donatur->nama }}</td>
-                                        <td>{{ $donatur->user->email }}</td>
+                                        <td>{{ $donatur->user ? $donatur->user->email : '-' }}</td>
                                         @if(Auth::user()->role->name == 'donatur')
                                         <td><a class="btn btn-primary btn-sm"
                                                 href="{{ route('program_donasi.create') }}">Donasi
