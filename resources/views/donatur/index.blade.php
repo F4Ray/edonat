@@ -60,15 +60,12 @@
                                         <td>{{ $donatur->nama }}</td>
                                         <td>{{ $donatur->user ? $donatur->user->email : '-' }}</td>
                                         @if(Auth::user()->role->name == 'donatur')
-                                        <td><a class="btn btn-primary btn-sm"
-                                                href="{{ route('program_donasi.create') }}">Donasi
+                                        <td><a class="btn btn-primary btn-sm" href="{{ route('program_donasi.create') }}">Donasi
                                                 Sekarang</a></td>
                                         @else
                                         <td>
-                                            <a class="btn btn-info btn-sm"
-                                                href="{{ route('donatur.show', $donatur->id) }}">Lihat Detail</a>
-                                            <a class="btn btn-primary btn-sm"
-                                                href="{{ route('donatur.edit', $donatur->id) }}">Ganti Password</a>
+                                            <a class="btn btn-info btn-sm" href="{{ route('donatur.show', $donatur->id) }}">Lihat Detail</a>
+                                            <a class="btn btn-primary btn-sm" href="{{ route('donatur.edit', $donatur->id) }}">Ganti Password</a>
                                         </td>
                                         @endif
                                     </tr>

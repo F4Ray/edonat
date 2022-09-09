@@ -77,7 +77,7 @@ class RegisterController extends Controller
         $user = new User;
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
-        $user->id_role = 2;
+        $user->id_role = $data['daftar_sebagai'];
 
         $donatur->save();
         $donatur->user()->save($user);

@@ -46,12 +46,10 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     @if(Auth::user()->role->name == 'donatur')
-                                    <a class="btn btn-primary " href="{{ route('donatur.edit', $donatur->id) }}"
-                                        role="button">Edit Data</a>
+                                    <a class="btn btn-primary " href="{{ route('donatur.edit', $donatur->id) }}" role="button">Edit Data</a>
                                     @else
                                     <a class="btn btn-warning " href="{{url()->previous()}}" role="button">Kembali</a>
-                                    <a class="btn btn-primary " href="{{ route('donatur.edit', $donatur->id) }}"
-                                        role="button">Ganti
+                                    <a class="btn btn-primary " href="{{ route('donatur.edit', $donatur->id) }}" role="button">Ganti
                                         Password</a>
                                     @endif
 

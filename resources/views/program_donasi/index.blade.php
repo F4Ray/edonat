@@ -36,8 +36,7 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            <a class="btn btn-primary float-end" href="{{ route('program_donasi.create') }}"
-                                role="button">Tambah Data</a>
+                            <a class="btn btn-primary float-end" href="{{ route('program_donasi.create') }}" role="button">Tambah Data</a>
 
                         </div>
                     </div>
@@ -62,13 +61,11 @@
                                         <td>{{ $donasi->keterangan }}</td>
                                         <td>Rp {{ $donasi->dana_terkumpul }}</td>
                                         @if(Auth::user()->role->name == 'donatur')
-                                        <td><a class="btn btn-primary btn-sm"
-                                                href="{{ route('program_donasi.create') }}">Donasi
+                                        <td><a class="btn btn-primary btn-sm" href="{{ route('program_donasi.create') }}">Donasi
                                                 Sekarang</a></td>
                                         @else
                                         <td>
-                                            <a class="btn btn-info btn-sm"
-                                                href="{{ route('program_donasi.show', $donasi->id) }}">Lihat Detail</a>
+                                            <a class="btn btn-info btn-sm" href="{{ route('program_donasi.show', $donasi->id) }}">Lihat Detail</a>
                                         </td>
                                         @endif
                                     </tr>
@@ -83,8 +80,7 @@
                         @foreach($programDonasi as $donasi)
                         <div class="col-md-4">
                             <div class="card" style="width: 18rem;">
-                                <img src="{{  asset('storage/assets/foto_donasi/'.$donasi->gambar) }}" height="286px"
-                                    width="286px" class="card-img-top" alt="...">
+                                <img src="{{  asset('storage/assets/foto_donasi/'.$donasi->gambar) }}" height="286px" width="286px" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $donasi->nama }}</h5>
                                     <p class="card-text">{{ $donasi->keterangan }}</p>
@@ -93,8 +89,7 @@
                                     <button class="btn btn-primary" disabled>Terimakasih telah berdonasi di program
                                         ini</button>
                                     @else
-                                    <a href="{{route('program_donasi.donasi_donatur', $donasi->id)}}"
-                                        class="btn btn-primary">Donasi
+                                    <a href="{{route('program_donasi.donasi_donatur', $donasi->id)}}" class="btn btn-primary">Donasi
                                         Sekarang</a>
                                     @endif
                                 </div>

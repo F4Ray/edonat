@@ -16,6 +16,8 @@
 
                     @if(Auth::user()->role->name == 'donatur')
                     Halo {{ Auth::user()->donatur->nama }}, Selamat datang di aplikasi donatur
+                    @elseif(Auth::user()->role->name == 'penerima donasi')
+                    Halo {{ Auth::user()->donatur->nama }}, Kamu adalah penerima donatur
                     @else
                     Halo Admin, Selamat datang di aplikasi donatur
                     @endif

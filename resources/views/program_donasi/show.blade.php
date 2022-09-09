@@ -13,8 +13,7 @@
                             <h1>Donasi untuk {{ $donasi->nama }}</h1>
                             <div class="row">
                                 <div class="col-md-12 mt-2">
-                                    <img id="frame" src="{{  asset('storage/assets/foto_donasi/'.$donasi->gambar) }}"
-                                        class="img-fluid mx-auto d-block" style="max-height: 300px;" />
+                                    <img id="frame" src="{{  asset('storage/assets/foto_donasi/'.$donasi->gambar) }}" class="img-fluid mx-auto d-block" style="max-height: 300px;" />
                                 </div>
                             </div>
                             <div class="row">

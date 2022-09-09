@@ -25,13 +25,11 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <form action="{{route('program_donasi.store')}}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="{{route('program_donasi.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Nama Program</label>
-                                    <input type="text" class="form-control" name="nama_program"
-                                        aria-describedby="emailHelp">
+                                    <input type="text" class="form-control" name="nama_program" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Keterangan</label>
@@ -39,8 +37,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Gambar</label>
-                                    <input class="form-control" type="file" name="gambar" id="formFile"
-                                        onchange="preview()">
+                                    <input class="form-control" type="file" name="gambar" id="formFile" onchange="preview()">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8 mb-3">
@@ -60,13 +57,13 @@
 @endsection
 @section('internalJS')
 <script>
-function preview() {
-    frame.src = URL.createObjectURL(event.target.files[0]);
-}
+    function preview() {
+        frame.src = URL.createObjectURL(event.target.files[0]);
+    }
 
-function clearImage() {
-    document.getElementById('formFile').value = null;
-    frame.src = "";
-}
+    function clearImage() {
+        document.getElementById('formFile').value = null;
+        frame.src = "";
+    }
 </script>
 @endsection
