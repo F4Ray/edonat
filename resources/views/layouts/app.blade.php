@@ -47,6 +47,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('transaksi') }}">Transaksi</a>
                         </li>
+                        @elseif(Auth::user()->role->name == 'penerima donasi')
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('donatur.show', Auth::user()->id) }}">Profile</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pengajuan.index') }}">Pengajuan</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('transaksi') }}">Transaksi</a>
+                        </li> -->
                         @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>
@@ -81,7 +91,11 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if(Auth::user()->id_role != 1 )
+                                @if(Auth::user()->id_role == 2)
                                 {{ Auth::user()->donatur->nama }}
+                                @else
+                                {{ Auth::user()->penerima->nama_siswa }}
+                                @endif
                                 @else
                                 Admin
                                 @endif

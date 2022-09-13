@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Donatur;
+use App\Models\Pengajuan;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -71,16 +72,30 @@ class RegisterController extends Controller
         //     'id_role' => 2,
         //     'id_profile' => 3
         // ]);
-        $donatur = new Donatur;
-        $donatur->nama = $data['name'];
+        if ($data['daftar_sebagai'] == "3") {
+            $penerima = new Pengajuan;
+            $penerima->nama_siswa = $data['name'];
+        } else {
+            $donatur = new Donatur;
+            $donatur->nama = $data['name'];
+        }
 
         $user = new User;
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
         $user->id_role = $data['daftar_sebagai'];
 
-        $donatur->save();
-        $donatur->user()->save($user);
+
+        if ($data['daftar_sebagai'] == "3") {
+            $user->id_profile = 9999;
+            $penerima->save();
+            $penerima->user()->save($user);
+        } else {
+            $user->id_pengajuan = 9999;
+            $donatur->save();
+            $donatur->user()->save($user);
+        }
+
         return $user;
     }
 }

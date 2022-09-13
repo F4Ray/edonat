@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DonaturController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProgramDonasiController;
 use App\Http\Controllers\TransaksiController;
 use App\Models\ProgramDonasi;
@@ -27,7 +28,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('program_donasi', ProgramDonasiController::class);
 Route::resource('donatur', DonaturController::class);
+Route::resource('pengajuan', PengajuanController::class);
 Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+
 
 Route::group(['as' => 'program_donasi.'], function () {
     Route::get('donasi/donatur/{id}', [ProgramDonasiController::class, 'donasi_donatur'])->name('donasi_donatur');
