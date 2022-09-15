@@ -14,7 +14,8 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        return view('pengajuan.index');
+        $pengajuans = Pengajuan::all();
+        return view('pengajuan.see', compact('pengajuans'));
     }
 
     /**
@@ -46,7 +47,8 @@ class PengajuanController extends Controller
      */
     public function show($id)
     {
-        //
+        $pengajuan = Pengajuan::findOrFail($id);
+        return view('pengajuan.show', compact('pengajuan'));
     }
 
     /**
@@ -57,7 +59,7 @@ class PengajuanController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('pengajuan.index');
     }
 
     /**
@@ -95,8 +97,18 @@ class PengajuanController extends Controller
         }
 
         $penerima->save();
-        return redirect()->route('pengajuan.index')
+        return redirect()->route('pengajuan.edit', $id)
             ->with('success', '<strong>Data pengajuan penerima donasi berhasil disimpan !</strong>');
+    }
+
+    public function luluskan(Request $request, $id)
+    {
+        $penerima = Pengajuan::findOrFail($id);
+        $penerima->status = 1;
+
+        $penerima->save();
+        return redirect()->route('pengajuan.index')
+            ->with('success', '<strong>Siswa berhak mendapatkan donasi !</strong>');
     }
 
     /**

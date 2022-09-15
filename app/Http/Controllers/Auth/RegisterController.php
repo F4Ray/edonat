@@ -75,6 +75,7 @@ class RegisterController extends Controller
         if ($data['daftar_sebagai'] == "3") {
             $penerima = new Pengajuan;
             $penerima->nama_siswa = $data['name'];
+            $penerima->status = 0;
         } else {
             $donatur = new Donatur;
             $donatur->nama = $data['name'];
@@ -91,7 +92,7 @@ class RegisterController extends Controller
             $penerima->save();
             $penerima->user()->save($user);
         } else {
-            $user->id_pengajuan = 9999;
+        $user->id_pengajuan = 9999;
             $donatur->save();
             $donatur->user()->save($user);
         }

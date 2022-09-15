@@ -29,6 +29,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('program_donasi', ProgramDonasiController::class);
 Route::resource('donatur', DonaturController::class);
 Route::resource('pengajuan', PengajuanController::class);
+Route::group(['as' => 'pengajuan.'], function () {
+    Route::put('luluskan/pengajuan/{id}', [PengajuanController::class, 'luluskan'])->name('luluskan');
+});
+
 Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi');
 
 

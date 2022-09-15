@@ -42,7 +42,7 @@
                             <a class="nav-link" href="{{ route('donatur.show', Auth::user()->id) }}">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>
+                            <a class="nav-link" href="{{ route('program_donasi.index' ) }}">Program Donasi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('transaksi') }}">Transaksi</a>
@@ -52,7 +52,7 @@
                             <a class="nav-link" href="{{ route('donatur.show', Auth::user()->id) }}">Profile</a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pengajuan.index') }}">Pengajuan</a>
+                            <a class="nav-link" href="{{ route('pengajuan.edit',Auth::user()->id) }}">Pengajuan</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('transaksi') }}">Transaksi</a>
@@ -66,6 +66,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('transaksi') }}">Transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pengajuan.index') }}">Penerima Donasi</a>
                         </li>
 
                         @endif
