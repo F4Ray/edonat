@@ -70,6 +70,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('pengajuan.index') }}">Penerima Donasi</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('transaksi.distribusi') }}">Distribusi</a>
+                        </li>
 
                         @endif
                     </ul>

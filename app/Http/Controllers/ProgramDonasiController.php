@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Distribution;
+use App\Models\Pengajuan;
 use App\Models\ProgramDonasi;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +20,11 @@ class ProgramDonasiController extends Controller
      */
     public function index()
     {
-        $programDonasi = ProgramDonasi::all();
+        if (Auth::user()->id_role == 1) {
+            $programDonasi = ProgramDonasi::all();
+        } else {
+            $programDonasi = ProgramDonasi::where('is_active', 1)->get();
+        }
         // foreach ($programDonasi as $donasi) {
         //     echo $donasi->nama;
         //     // if (in_array(4, $donasi->donatur)) {
@@ -72,6 +79,28 @@ class ProgramDonasiController extends Controller
             ->with('success', '<strong>Data program donasi berhasil disimpan !</strong>');
     }
 
+    public function distribusi(Request $request, $id)
+    {
+        $donasi = ProgramDonasi::findOrFail($id);
+        $donasi->is_active = 0;
+        $donasi->save();
+
+        $penerimanya = Pengajuan::where('status', 1)->get();
+
+        $perorang = $donasi->dana_terkumpul / count($penerimanya);
+        foreach ($penerimanya as $penerima) {
+            $distri = new Distribution;
+            $distri->id_program_donasi = $id;
+            $distri->id_penerima = $penerima->id;
+            $distri->nominal = $perorang;
+            $distri->waktu = Carbon::now();
+            $distri->dilakukan_oleh = Auth::user()->id;
+            $distri->save();
+        }
+        return redirect()->route('program_donasi.show', $id)
+            ->with('success', '<strong>Donasi berhasil di distribusikan!</strong>');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -81,8 +110,9 @@ class ProgramDonasiController extends Controller
     public function show($id)
     {
         $donasi = ProgramDonasi::findOrFail($id);
+        $penerimas = Pengajuan::where('status', '1')->get();
 
-        return view('program_donasi.show', compact("donasi"));
+        return view('program_donasi.show', compact("donasi", "penerimas"));
     }
 
     /**

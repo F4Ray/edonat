@@ -34,9 +34,11 @@ Route::group(['as' => 'pengajuan.'], function () {
 });
 
 Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+Route::get('transaksi/distribusi', [TransaksiController::class, 'keluar'])->name('transaksi.distribusi');
 
 
 Route::group(['as' => 'program_donasi.'], function () {
     Route::get('donasi/donatur/{id}', [ProgramDonasiController::class, 'donasi_donatur'])->name('donasi_donatur');
     Route::post('donasi/donatur/{id}', [ProgramDonasiController::class, 'store_donasi_donatur'])->name('store_donasi_donatur');
+    Route::put('donasi/donatur/{id}/distribusi', [ProgramDonasiController::class, 'distribusi'])->name('distribusi');
 });
