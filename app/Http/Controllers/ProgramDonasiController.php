@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Distribution;
+use App\Models\Donatur;
 use App\Models\Pengajuan;
 use App\Models\ProgramDonasi;
 use App\Models\Transaction;
@@ -113,8 +114,9 @@ class ProgramDonasiController extends Controller
     {
         $donasi = ProgramDonasi::findOrFail($id);
         $penerimas = Pengajuan::where('status', '1')->get();
+        $terima = Distribution::where('id_program_donasi', $id)->get();
 
-        return view('program_donasi.show', compact("donasi", "penerimas"));
+        return view('program_donasi.show', compact("donasi", "penerimas", "terima"));
     }
 
     /**

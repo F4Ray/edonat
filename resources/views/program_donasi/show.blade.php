@@ -58,12 +58,12 @@
                                     penerima.
                                     Daftar penerima donasi :
                                     <ol>
-                                        @foreach($penerimas as $penerima)
-                                        <li>{{ $penerima->nama_siswa }}</li>
+                                        @foreach($terima as $distri)
+                                        <li>{{ $distri->penerima->nama_siswa }}</li>
                                         @endforeach
                                     </ol>
-                                    Setiap penerima mendapatkan {{$donasi->dana_terkumpul}} / {{ count($penerimas) }} =
-                                    Rp. {{ $donasi->dana_terkumpul/count($penerimas) }} <br />
+                                    Setiap penerima mendapatkan {{$donasi->dana_terkumpul}} / {{ count($terima) }} =
+                                    Rp. {{ $donasi->dana_terkumpul/count($terima) }} <br />
                                     <a class="btn btn-warning mt-2" href="{{url()->previous()}}"
                                         role="button">Kembali</a>
                                     @endif
