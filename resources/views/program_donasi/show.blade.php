@@ -48,6 +48,7 @@
                                     </table>
                                 </div>
                                 <div class="col-md-12">
+                                    @if($penerimas->isNotEmpty())
                                     @if($donasi->is_active==1)
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
@@ -67,7 +68,7 @@
                                     <a class="btn btn-warning mt-2" href="{{url()->previous()}}"
                                         role="button">Kembali</a>
                                     @endif
-
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -84,6 +85,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Distribusi Dana Donasi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            @if($penerimas->isNotEmpty())
             <div class="modal-body">
                 Donasi akan di distribusikan kepada {{ count($penerimas) }} penerima donasi yang lulus seleksi.
                 Daftar penerima donasi :
@@ -103,6 +105,7 @@
                     <button type="submit" class="btn btn-primary">Distribusi</button>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </div>
