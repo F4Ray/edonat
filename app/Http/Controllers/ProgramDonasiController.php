@@ -89,6 +89,7 @@ class ProgramDonasiController extends Controller
 
         $perorang = $donasi->dana_terkumpul / count($penerimanya);
         foreach ($penerimanya as $penerima) {
+            $penerima->saldo += $perorang;
             $distri = new Distribution;
             $distri->id_program_donasi = $id;
             $distri->id_penerima = $penerima->id;
@@ -96,6 +97,7 @@ class ProgramDonasiController extends Controller
             $distri->waktu = Carbon::now();
             $distri->dilakukan_oleh = Auth::user()->id;
             $distri->save();
+            $penerima->save();
         }
         return redirect()->route('program_donasi.show', $id)
             ->with('success', '<strong>Donasi berhasil di distribusikan!</strong>');

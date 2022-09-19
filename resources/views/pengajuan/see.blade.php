@@ -45,7 +45,7 @@
                                         <th scope="col">Nama Ibu</th>
                                         <th scope="col">Orang Tua yang Almarhum</th>
                                         <th scope="col">Penghasilan</th>
-                                        <th scope="col">Surat Pernyataan</th>
+                                        <!-- <th scope="col">Surat Pernyataan</th> -->
                                         <th scope="col">Status</th>
                                         <th scope="col">Detail</th>
                                     </tr>
@@ -62,7 +62,7 @@
                                         <td> {{ $pengajuan->nama_ibu }}</td>
                                         <td> {{ $pengajuan->orang_tua_tiada }}</td>
                                         <td> {{ $pengajuan->penghasilan }}</td>
-                                        <td> {{ $pengajuan->surat_pernyataan }}</td>
+                                        <!-- <td> {{ $pengajuan->surat_pernyataan }}</td> -->
                                         <td>
                                             @if($pengajuan->nama_siswa == null || $pengajuan->kelas == null ||
                                             $pengajuan->jenis_kelamin == null || $pengajuan->nama_ayah == null ||
