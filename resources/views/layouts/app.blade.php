@@ -54,9 +54,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('pengajuan.edit',Auth::user()->id) }}">Pengajuan</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('transaksi') }}">Transaksi</a>
-                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('transaksi.distribusi') }}">Transaksi Dan Saldo</a>
+                        </li>
                         @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('program_donasi.index') }}">Program Donasi</a>

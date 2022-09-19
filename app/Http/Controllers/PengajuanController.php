@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Distribution;
 use App\Models\Pengajuan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengajuanController extends Controller
 {
@@ -36,7 +39,21 @@ class PengajuanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $distri = new Distribution;
+        $distri->id_program_donasi = 9999;
+        $distri->id_penerima = Auth::user()->penerima->id;
+        $distri->nominal = Auth::user()->penerima->saldo;
+        $distri->waktu = Carbon::now();
+        $distri->dilakukan_oleh = Auth::user()->id;
+
+        $penerima = Pengajuan::findOrFail(Auth::user()->penerima->id);
+        $penerima->saldo -= $penerima->saldo;
+        $penerima->save();
+        $distri->save();
+
+        return redirect()->route('transaksi.distribusi')
+            ->with('success', '<strong>Saldo berhasil di transfer ke uang sekolah!</strong>');
     }
 
     /**

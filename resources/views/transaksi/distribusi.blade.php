@@ -27,6 +27,9 @@
                             @if(Auth::user()->role->name == 'donatur')
                             Halo {{ Auth::user()->donatur->nama }}, disini anda dapat memilih berdonasi di program yang
                             telah disediakan.
+                            @elseif(Auth::user()->role->name == 'penerima donasi')
+                            Halo {{ Auth::user()->penerima->nama_siswa }}, Saldo kamu adalah Rp.
+                            {{Auth::user()->penerima->saldo}}
                             @else
                             Halo Admin, disini Anda dapat mengatur data program donasi
                             @endif
@@ -38,6 +41,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
+                                        @if(Auth::user()->id_role == 3)
+                                        <th>Jenis Transaksi</th>
+                                        @endif
                                         <th scope="col">Nama Penerima</th>
                                         <th scope="col">Program Donasi</th>
                                         <th scope="col">Nominal</th>
@@ -49,8 +55,19 @@
                                     @foreach($transaksi as $transaksinya)
                                     <tr>
                                         <td>{{ $no }}</td>
+                                        @if(Auth::user()->id_role == 3)
+                                        @if($transaksinya->id_program_donasi == 9999)
+                                        <td>Keluar</td>
+                                        @else
+                                        <td>Masuk</td>
+                                        @endif
+                                        @endif
                                         <td>{{ $transaksinya->penerima->nama_siswa }}</td>
+                                        @if($transaksinya->id_program_donasi != 9999)
                                         <td>{{ $transaksinya->program->nama }}</td>
+                                        @else
+                                        <td>Transfer SPP</td>
+                                        @endif
                                         <td>Rp {{ $transaksinya->nominal }}</td>
                                         <td>{{\Carbon\Carbon::parse($transaksinya->waktu) }} (
                                             {{ \Carbon\Carbon::parse($transaksinya->waktu)->diffForHumans() }})
@@ -60,6 +77,20 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if(Auth::user()->role->name == 'penerima donasi')
+                            <form action="{{route('pengajuan.store')}}" method="post">
+                                @csrf
+                                @if(Auth::user()->penerima->saldo != 0)
+                                <button type="submit" class="btn btn-primary">Transfer Ke Uang Sekolah</button>
+                                @else
+                                <button type="submit" class="btn btn-primary" disabled>Transfer Ke Uang Sekolah</button>
+                                @endif
+                            </form>
+                            @endif
                         </div>
                     </div>
 
