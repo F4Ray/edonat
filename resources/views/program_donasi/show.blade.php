@@ -63,7 +63,7 @@
                                         @endforeach
                                     </ol>
                                     Setiap penerima mendapatkan {{$donasi->dana_terkumpul}} / {{ count($terima) }} =
-                                    Rp. {{ $donasi->dana_terkumpul/count($terima) }} <br />
+                                    Rp. {{ intval($donasi->dana_terkumpul/count($terima)) }} <br />
                                     <a class="btn btn-warning mt-2" href="{{url()->previous()}}"
                                         role="button">Kembali</a>
                                     @endif

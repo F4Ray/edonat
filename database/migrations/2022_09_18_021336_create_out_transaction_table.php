@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_program_donasi');
             $table->string('id_penerima');
-            $table->string('nominal');
+            $table->int('nominal');
             $table->string('waktu');
             $table->string('dilakukan_oleh');
             $table->timestamps();

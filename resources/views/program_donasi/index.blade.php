@@ -85,7 +85,7 @@
                     @else
                     <div class="row mt-3">
                         @foreach($programDonasi as $donasi)
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-4">
                             <div class="card" style="width: 18rem;">
                                 <img src="{{  asset('storage/assets/foto_donasi/'.$donasi->gambar) }}" height="286px"
                                     width="286px" class="card-img-top" alt="...">

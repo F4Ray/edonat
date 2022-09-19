@@ -50,7 +50,11 @@ class DonaturController extends Controller
      */
     public function show($id)
     {
-        $donatur = Donatur::findOrFail($id);
+        if (Auth::user()->id_role == 2) {
+            $donatur = Donatur::findOrFail(Auth::user()->donatur->id);
+        } else {
+            $donatur = Donatur::findOrFail($id);
+        }
 
         return view('donatur.show', compact("donatur"));
     }
