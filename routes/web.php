@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProgramDonasiController;
@@ -18,9 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [LoginController::class, 'showLoginForm']);
 
 Auth::routes(['verify' => true]);
 

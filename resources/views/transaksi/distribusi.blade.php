@@ -28,20 +28,27 @@
                             Halo {{ Auth::user()->donatur->nama }}, disini anda dapat memilih berdonasi di program yang
                             telah disediakan.
                             @elseif(Auth::user()->role->name == 'penerima donasi')
+                            @if(Auth::user()->penerima->status == 0)
+                            Halo {{ Auth::user()->penerima->nama_siswa }}, Sayang sekali kamu tidak lulus seleksi
+                            penerima donasi.
+                            @else
                             Halo {{ Auth::user()->penerima->nama_siswa }}, Saldo kamu adalah Rp.
                             {{Auth::user()->penerima->saldo}}
+                            @endif
                             @else
                             Halo Admin, disini Anda dapat mengatur data program donasi
                             @endif
                         </div>
                     </div>
+                    @if(Auth::user()->id_role == 1 OR (Auth::user()->id_role == 3 AND Auth::user()->penerima->status !=
+                    0))
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        @if(Auth::user()->id_role == 3)
+                                        @if(Auth::user()->id_role == 3 AND Auth::user()->penerima->status != 0)
                                         <th>Jenis Transaksi</th>
                                         @endif
                                         <th scope="col">Nama Penerima</th>
@@ -55,7 +62,7 @@
                                     @foreach($transaksi as $transaksinya)
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        @if(Auth::user()->id_role == 3)
+                                        @if(Auth::user()->id_role == 3 AND Auth::user()->penerima->status != 0)
                                         @if($transaksinya->id_program_donasi == 9999)
                                         <td>Keluar</td>
                                         @else
@@ -93,6 +100,7 @@
                             @endif
                         </div>
                     </div>
+                    @endif
 
                 </div>
             </div>
