@@ -13,7 +13,7 @@
             </div>
             @endif
             <div class="card">
-                <div class="card-header">{{ __('Program Donasi') }}</div>
+                <div class="card-header">{{ __('Pengajuan Penerima Donasi') }}</div>
 
                 <div class="card-body">
                     <div class="row">
@@ -28,7 +28,7 @@
                             Halo {{ Auth::user()->donatur->nama }}, disini anda dapat memilih berdonasi di program yang
                             telah disediakan.
                             @else
-                            Halo Admin, disini Anda dapat mengatur data penerima donasi
+                            Halo Admin, disini Anda dapat melakukan seleksi yang berhak menerima donasi.
                             @endif
                         </div>
                     </div>

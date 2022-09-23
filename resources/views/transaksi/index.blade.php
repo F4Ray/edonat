@@ -13,7 +13,7 @@
             </div>
             @endif
             <div class="card">
-                <div class="card-header">{{ __('Program Donasi') }}</div>
+                <div class="card-header">{{ __('Transaksi Donasi') }}</div>
 
                 <div class="card-body">
                     <div class="row">
@@ -25,10 +25,10 @@
                             @endif
 
                             @if(Auth::user()->role->name == 'donatur')
-                            Halo {{ Auth::user()->donatur->nama }}, disini anda dapat memilih berdonasi di program yang
-                            telah disediakan.
+                            Halo {{ Auth::user()->donatur->nama }}, disini anda dapat melihat data transaksi donasi yang
+                            telah anda lakukan.
                             @else
-                            Halo Admin, disini Anda dapat mengatur data program donasi
+                            Halo Admin, disini Anda dapat melihat data transaksi donasi masuk.
                             @endif
                         </div>
                     </div>
