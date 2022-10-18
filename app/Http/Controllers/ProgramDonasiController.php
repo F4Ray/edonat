@@ -7,10 +7,12 @@ use App\Models\Donatur;
 use App\Models\Pengajuan;
 use App\Models\ProgramDonasi;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ProgramDonasiController extends Controller
 {
@@ -58,6 +60,7 @@ class ProgramDonasiController extends Controller
      */
     public function store(Request $request)
     {
+        $paraDonatur = User::where('id_role', 2)->get();
 
         $validatedData = $request->validate([
             'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
@@ -75,6 +78,16 @@ class ProgramDonasiController extends Controller
         $programDonasi->gambar = $data['image'];
         $request->file('gambar')->storeAs('public/assets/foto_donasi', $data['image']);
         $programDonasi->save();
+
+        $details = [
+            'title' => 'Pengingat Donasi Baru',
+            'body' => 'Ada donasi baru loh, silahkan buka aplikasi edonate anda. Terimakasih.'
+        ];
+
+        foreach ($paraDonatur as $donatur) {
+            Mail::to($donatur->email)->send(new \App\Mail\MyTestMail($details));
+        }
+
 
         return redirect()->route('program_donasi.index')
             ->with('success', '<strong>Data program donasi berhasil disimpan !</strong>');
